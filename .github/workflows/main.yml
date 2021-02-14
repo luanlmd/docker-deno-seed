@@ -15,11 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Docker Login
-        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
       - name: Docker Build
         run: docker build . -f docker/prod.Dockerfile -t luanlmd/docker-deno-seed:latest
 
+      - name: Docker Login
+        run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
       - name: Docker Push
         run: docker push luanlmd/docker-deno-seed:latest
+
+      - name: run kubectl help
+        run: docker run bearengineer/awscli-kubectl kubectl help

@@ -1,4 +1,4 @@
-FROM hayd/alpine-deno:1.8.0
+FROM denoland/deno:1.10.3
 
 WORKDIR /src
 USER deno

@@ -6,4 +6,4 @@ USER deno
 ADD src .
 RUN deno cache /src/deps.ts
 
-CMD ["run", "--allow-net", "/src/index.ts"]
+CMD ["run", "--allow-net", "--allow-env", "/src/index.ts"]

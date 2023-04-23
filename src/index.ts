@@ -1,6 +1,7 @@
 import { serve } from "./deps.ts";
 
-const PORT = 8000;
+const PORT = Deno.env.get("PORT");
+
 const server = serve(`0.0.0.0:${PORT}`);
 
 console.error(`Server started on port ${PORT}`);

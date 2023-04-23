@@ -5,5 +5,7 @@ services:
       context: . 
       dockerfile: docker/dev.Dockerfile
     network_mode: host
+    environment:
+      PORT: 8080
     volumes:
       - ./src:/src

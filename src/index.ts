@@ -1,4 +1,4 @@
-import { serve } from "./deps.ts";
+import { copy } from "./deps.ts";
 
 const PORT = Deno.env.get("PORT");
 console.log(PORT);

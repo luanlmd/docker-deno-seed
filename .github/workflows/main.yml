@@ -12,13 +12,21 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Docker Build
-        run: docker build . -f docker/prod.Dockerfile -t luanlmd/docker-deno-seed:latest
+        run: docker build . -f docker/prod.Dockerfile -t luanlmd/docker-deno-seed:v${{ github.run_number }}
 
       - name: Docker Login
         run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Docker Push
-        run: docker push luanlmd/docker-deno-seed:latest
+        run: docker push luanlmd/docker-deno-seed:v${{ github.run_number }}
 
-      - name: run kubectl help
-        run: docker run bearengineer/awscli-kubectl kubectl help
+      - uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+
+      - name: Update Cloud Run Service
+        uses: 'google-github-actions/deploy-cloudrun@v1'
+        with:
+          region: southamerica-east1
+          service: 'deno'
+          image: 'luanlmd/docker-deno-seed:v${{ github.run_number }}'

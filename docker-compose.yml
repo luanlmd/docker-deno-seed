@@ -6,6 +6,6 @@ services:
       dockerfile: docker/dev.Dockerfile
     network_mode: host
     environment:
-      PORT: 8080
+      PORT: 3000
     volumes:
       - ./src:/src

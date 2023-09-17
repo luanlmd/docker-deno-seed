@@ -1,8 +1,10 @@
 import { copy } from "./deps.ts";
 
 const PORT = Deno.env.get("PORT");
-console.log(PORT);
 
 Deno.serve({port:PORT},(req) => {
-  return new Response("Hello from Deno");
+  const data = { success: true, message: "Hello from Deno!" }
+  return Response.json(data);
 });
+
+console.log('Deno Server Started')

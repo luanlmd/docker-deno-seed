@@ -2,7 +2,7 @@ const PORT = Number(Deno.env.get("PORT")) || 3000;
 
 Deno.serve({ port: PORT }, (req: Request) => {
   console.log({ req })
-  const data = { success: true, message: "Hello from Deno!" }
+  const data = { success: true, message: "Hello from Deno 2!" }
   return Response.json(data);
 });
 
